@@ -36,6 +36,9 @@ namespace CAR_RENTAL.Controllers
                 PhoneNumber = customer.PhoneNumber,
                 Address = customer.Address,
                 LicenceNumber = customer.LicenceNumber,
+                password = customer.password,
+
+
 
             });
         }
@@ -46,7 +49,7 @@ namespace CAR_RENTAL.Controllers
             var customer = await _customerService.GetCustomerByNICAsync(nic);
             if (customer == null)
             {
-                return NotFound();
+                return NotFound(new {Message = "user not insert"});
             }
 
             return Ok(new CustomerResponseDto
@@ -58,6 +61,7 @@ namespace CAR_RENTAL.Controllers
                 PhoneNumber = customer.PhoneNumber,
                 Address = customer.Address,
                 LicenceNumber = customer.LicenceNumber,
+                password = customer.password,
             });
         }
 
@@ -78,6 +82,7 @@ namespace CAR_RENTAL.Controllers
                     PhoneNumber = customer.PhoneNumber,
                     Address = customer.Address,
                     LicenceNumber = customer.LicenceNumber,
+                    password=customer.password,
                 });
             }
 
@@ -95,6 +100,7 @@ namespace CAR_RENTAL.Controllers
                 PhoneNumber = customerRequest.PhoneNumber,
                 Address = customerRequest.Address,
                 LicenceNumber = customerRequest.LicenceNumber,
+                password = customerRequest.password,
             };
 
             var createdCustomer = await _customerService.CreateCustomerAsync(customer);
@@ -107,6 +113,7 @@ namespace CAR_RENTAL.Controllers
                 PhoneNumber = createdCustomer.PhoneNumber,
                 Address = createdCustomer.Address,
                 LicenceNumber = createdCustomer.LicenceNumber,
+                password=createdCustomer.password,
 
             });
         }
@@ -126,6 +133,7 @@ namespace CAR_RENTAL.Controllers
             existingCustomer.PhoneNumber = customerRequest.PhoneNumber;
             existingCustomer.Address = customerRequest.Address;
             existingCustomer.LicenceNumber = customerRequest.LicenceNumber;
+            existingCustomer.password=customerRequest.password;
 
 
             var updatedCustomer = await _customerService.UpdateCustomerAsync(existingCustomer);
@@ -138,7 +146,8 @@ namespace CAR_RENTAL.Controllers
                 Email = updatedCustomer.Email,
                 PhoneNumber = updatedCustomer.PhoneNumber,
                 Address = updatedCustomer.Address,
-                LicenceNumber = updatedCustomer.LicenceNumber
+                LicenceNumber = updatedCustomer.LicenceNumber,
+                password = updatedCustomer.password,
 
             });
         }
