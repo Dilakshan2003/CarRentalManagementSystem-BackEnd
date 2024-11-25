@@ -31,7 +31,8 @@ namespace CAR_RENTAL.Services
                     Year = car.Year,
                     PricePerDay = car.PricePerDay,
                     Color = car.Color,
-                    IsAvailable = car.IsAvailable
+                    IsAvailable = car.IsAvailable,
+                    ImageFilePath = car.ImageFilePath
                 });
             }
 
@@ -55,7 +56,8 @@ namespace CAR_RENTAL.Services
                 Year = car.Year,
                 PricePerDay = car.PricePerDay,
                 Color = car.Color,
-                IsAvailable = car.IsAvailable
+                IsAvailable = car.IsAvailable,
+                ImageFilePath = car.ImageFilePath
             };
         }
 
@@ -69,7 +71,8 @@ namespace CAR_RENTAL.Services
                 Year = carRequest.Year,
                 PricePerDay = carRequest.PricePerDay,
                 Color = carRequest.Color,
-                IsAvailable = carRequest.IsAvailable
+                IsAvailable = carRequest.IsAvailable,
+                ImageFilePath = carRequest.ImageFilePath
             };
 
             await _carRepository.AddCarAsync(car);
@@ -87,6 +90,7 @@ namespace CAR_RENTAL.Services
                 car.PricePerDay = carRequest.PricePerDay;
                 car.Color = carRequest.Color;
                 car.IsAvailable = carRequest.IsAvailable;
+                car.ImageFilePath = carRequest.ImageFilePath;
 
                 await _carRepository.UpdateCarAsync(car);
             }
