@@ -132,6 +132,27 @@ namespace CAR_RENTAL.Migrations
 
                     b.ToTable("Customers");
                 });
+
+            modelBuilder.Entity("CAR_RENTAL.Entites.CustomerLogin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerLogins");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -26,6 +26,10 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddScoped<ICustomerLoginRepository, CustomerLoginRepository>();
+builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
