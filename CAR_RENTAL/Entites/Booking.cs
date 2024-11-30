@@ -7,7 +7,7 @@
         public int CarId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Status { get; set; } // E.g., "Confirmed", "Pending", "Cancelled"
+        public string Status { get; set; } 
         public DateTime CreatedDate { get; set; }
     }
 }

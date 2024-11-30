@@ -9,8 +9,6 @@
         public decimal PricePerDay { get; set; }
         public string Color { get; set; }
         public bool IsAvailable { get; set; }
-        public string ImageFilePath { get; set; }  // File path to the car image
-
-
+        public string ImageFilePath { get; set; }  
     }
 }
