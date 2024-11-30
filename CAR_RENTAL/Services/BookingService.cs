@@ -61,6 +61,41 @@ namespace CAR_RENTAL.Services
             return bookingDto;
         }
 
+        //public async Task<BookingResponseDto> CreateBookingAsync(BookingRequestDto bookingRequestDto)
+        //{
+        //    var booking = new Booking
+        //    {
+        //        CustomerId = bookingRequestDto.CustomerId,
+        //        CarId = bookingRequestDto.CarId,
+        //        StartDate = bookingRequestDto.StartDate,
+        //        EndDate = bookingRequestDto.EndDate,
+        //        Status = bookingRequestDto.Status,
+        //        CreatedDate = System.DateTime.UtcNow
+        //    };
+
+        //    await _bookingRepository.CreateBookingAsync(booking);
+
+        //    var bookingDto = new BookingResponseDto
+        //    {
+        //        BookingId = booking.BookingId,
+        //        CustomerId = booking.CustomerId,
+        //        CarId = booking.CarId,
+        //        StartDate = booking.StartDate,
+        //        EndDate = booking.EndDate,
+        //        Status = booking.Status,
+        //        CreatedDate = booking.CreatedDate
+        //    };
+
+        //    return bookingDto;
+        //}
+
+
+
+
+
+
+
+
         public async Task<BookingResponseDto> CreateBookingAsync(BookingRequestDto bookingRequestDto)
         {
             var booking = new Booking
@@ -88,6 +123,25 @@ namespace CAR_RENTAL.Services
 
             return bookingDto;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<BookingResponseDto> UpdateBookingAsync(int id, BookingRequestDto bookingRequestDto)
         {
