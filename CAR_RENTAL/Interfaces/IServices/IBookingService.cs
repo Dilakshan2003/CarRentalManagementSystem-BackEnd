@@ -7,7 +7,7 @@ namespace CAR_RENTAL.Interfaces.IServices
     {
         Task<List<BookingResponseDto>> GetAllBookingsAsync();
         Task<BookingResponseDto> GetBookingByIdAsync(int id);
-        Task<BookingResponseDto> CreateBookingAsync(BookingRequestDto bookingRequestDto);
+        Task<BookingResponseDto> CreateBookingAsync(int customerId, BookingRequestDto bookingRequestDto);
         Task<BookingResponseDto> UpdateBookingAsync(int id, BookingRequestDto bookingRequestDto);
         Task DeleteBookingAsync(int id);
     }

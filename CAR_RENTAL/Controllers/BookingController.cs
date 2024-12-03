@@ -34,9 +34,9 @@ namespace CAR_RENTAL.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BookingResponseDto>> CreateBooking([FromBody] BookingRequestDto bookingRequestDto)
+        public async Task<ActionResult<BookingResponseDto>> CreateBooking(int CustomerId,[FromBody] BookingRequestDto bookingRequestDto)
         {
-            var booking = await _bookingService.CreateBookingAsync(bookingRequestDto);
+            var booking = await _bookingService.CreateBookingAsync(CustomerId, bookingRequestDto);
             return CreatedAtAction(nameof(GetBookingById), new { id = booking.BookingId }, booking);
         }
 

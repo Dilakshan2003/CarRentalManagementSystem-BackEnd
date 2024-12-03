@@ -9,15 +9,19 @@ namespace CAR_RENTAL.Services
     public class BookingService : IBookingService
     {
         private readonly IBookingRepository _bookingRepository;
+        private readonly ICustomerRepository _customerRepository;
 
-        public BookingService(IBookingRepository bookingRepository)
+        public BookingService(IBookingRepository bookingRepository, ICustomerRepository customerRepository)
         {
             _bookingRepository = bookingRepository;
+            _customerRepository = customerRepository;
         }
 
         public async Task<List<BookingResponseDto>> GetAllBookingsAsync()
         {
+           
             var bookings = await _bookingRepository.GetAllBookingsAsync();
+        
             var bookingDtos = new List<BookingResponseDto>();
 
             foreach (var booking in bookings)
@@ -96,11 +100,12 @@ namespace CAR_RENTAL.Services
 
 
 
-        public async Task<BookingResponseDto> CreateBookingAsync(BookingRequestDto bookingRequestDto)
+        public async Task<BookingResponseDto> CreateBookingAsync(int CustomerId,BookingRequestDto bookingRequestDto)
         {
+            var  customer = await _customerRepository.GetCustomerByIdAsync(CustomerId);
             var booking = new Booking
             {
-                CustomerId = bookingRequestDto.CustomerId,
+                CustomerId = customer.Id,
                 CarId = bookingRequestDto.CarId,
                 StartDate = bookingRequestDto.StartDate,
                 EndDate = bookingRequestDto.EndDate,

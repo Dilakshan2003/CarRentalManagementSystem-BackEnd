@@ -9,5 +9,6 @@
         public DateTime EndDate { get; set; }
         public string Status { get; set; } 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public Customer customer { get; set; }
     }
 }

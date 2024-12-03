@@ -10,5 +10,7 @@
         public string Address { get; set; }
         public string LicenceNumber {  get; set; }
         public string password { get; set; }
+
+        public ICollection<Booking> Bookings { get; set; }
     }
 }
