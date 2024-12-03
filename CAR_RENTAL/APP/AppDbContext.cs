@@ -11,6 +11,7 @@ namespace CAR_RENTAL.context
         public DbSet<Car> Cars { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<CustomerLogin> CustomerLogins { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }

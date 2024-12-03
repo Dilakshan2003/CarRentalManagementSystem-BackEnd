@@ -30,6 +30,9 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<ICustomerLoginRepository, CustomerLoginRepository>();
 builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
 
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
