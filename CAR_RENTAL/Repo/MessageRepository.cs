@@ -16,7 +16,7 @@ namespace CAR_RENTAL.Repo
 
         public async Task<Message> AddMessageAsync(Message message)
         {
-            var data =await _context.Messages.AddAsync(message);
+            var data = await _context.Messages.AddAsync(message);
             await _context.SaveChangesAsync();
             return data.Entity;
         }
@@ -24,6 +24,14 @@ namespace CAR_RENTAL.Repo
         public async Task<List<Message>> GetMessagesAsync()
         {
             return await _context.Messages.OrderBy(m => m.SentDate).ToListAsync();
+        }
+
+        public async Task<List<Message>> GetMessagesByCustomerIdAsync(int customerId)
+        {
+            return await _context.Messages
+                .Where(m => m.CustomerId == customerId)
+                .OrderBy(m => m.SentDate)
+                .ToListAsync();
         }
     }
 }

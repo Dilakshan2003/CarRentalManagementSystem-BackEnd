@@ -1,5 +1,6 @@
 ﻿using CAR_RENTAL.DTOS.RequestDto;
 using CAR_RENTAL.DTOS.ResponseDto;
+using CAR_RENTAL.Entites;
 using CAR_RENTAL.Interfaces.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +21,21 @@ namespace CAR_RENTAL.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMessage(SendMessageRequestDto requestDto)
         {
-           var data = await _messageService.SendMessageAsync(requestDto);
-            return Ok(data);
+            var response = await _messageService.SendMessageAsync(requestDto);
+            return Ok(response);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<MessageResponseDto>>> GetMessages()
+        public async Task<IActionResult> GetMessages()
         {
             var messages = await _messageService.GetMessagesAsync();
+            return Ok(messages);
+        }
+
+        [HttpGet("{customerId}")]
+        public async Task<IActionResult> GetMessagesByCustomerId(int customerId)
+        {
+            var messages = await _messageService.GetMessagesByCustomerIdAsync(customerId);
             return Ok(messages);
         }
     }

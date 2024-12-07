@@ -110,7 +110,7 @@ namespace CAR_RENTAL.Services
                 StartDate = bookingRequestDto.StartDate,
                 EndDate = bookingRequestDto.EndDate,
                 Status = bookingRequestDto.Status,
-                CreatedDate = System.DateTime.UtcNow
+                CreatedDate = System.DateTime.Now
             };
 
             await _bookingRepository.CreateBookingAsync(booking);

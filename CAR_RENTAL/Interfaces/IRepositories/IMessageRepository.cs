@@ -6,5 +6,6 @@ namespace CAR_RENTAL.Interfaces.IRepositories
     {
         Task<Message> AddMessageAsync(Message message);
         Task<List<Message>> GetMessagesAsync();
+        Task<List<Message>> GetMessagesByCustomerIdAsync(int customerId);
     }
 }

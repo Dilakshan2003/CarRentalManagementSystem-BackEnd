@@ -2,6 +2,7 @@
 {
     public class SendMessageRequestDto
     {
+        public int CustomerId { get; set; }
         public string Content { get; set; }
         public string Sender { get; set; }
     }

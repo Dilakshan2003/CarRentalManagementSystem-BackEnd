@@ -8,5 +8,6 @@ namespace CAR_RENTAL.Interfaces.IServices
     {
         Task<MessageResponseDto> SendMessageAsync(SendMessageRequestDto requestDto);
         Task<List<MessageResponseDto>> GetMessagesAsync();
+        Task<List<MessageResponseDto>> GetMessagesByCustomerIdAsync(int customerId);
     }
 }
