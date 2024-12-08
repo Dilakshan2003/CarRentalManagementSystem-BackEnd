@@ -1,4 +1,6 @@
-﻿namespace CAR_RENTAL.DTOS.ResponseDto
+﻿using CAR_RENTAL.Entites;
+
+namespace CAR_RENTAL.DTOS.ResponseDto
 {
     public class MessageResponseDto
     {
@@ -7,5 +9,8 @@
         public string Content { get; set; }
         public string Sender { get; set; }
         public DateTime SentDate { get; set; } = DateTime.Now;
+
+       
     }
+
 }

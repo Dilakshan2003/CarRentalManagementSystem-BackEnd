@@ -33,5 +33,16 @@ namespace CAR_RENTAL.Repo
                 .OrderBy(m => m.SentDate)
                 .ToListAsync();
         }
+
+        public async Task<bool> DeleteMessageByIdAsync(int id) 
+        {
+            var message = await _context.Messages.FindAsync(id);
+            if (message == null) return false;
+
+            _context.Messages.Remove(message);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

@@ -38,5 +38,13 @@ namespace CAR_RENTAL.Controllers
             var messages = await _messageService.GetMessagesByCustomerIdAsync(customerId);
             return Ok(messages);
         }
+
+        [HttpDelete("{id}")] 
+        public async Task<IActionResult> DeleteMessageById(int id)
+        {
+            var result = await _messageService.DeleteMessageByIdAsync(id);
+            if (!result) return NotFound("Message not found.");
+            return NoContent();
+        }
     }
 }

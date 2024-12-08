@@ -70,5 +70,10 @@ namespace CAR_RENTAL.Services
                 SentDate = m.SentDate
             }).ToList();
         }
+
+        public async Task<bool> DeleteMessageByIdAsync(int id) 
+        {
+            return await _messageRepository.DeleteMessageByIdAsync(id);
+        }
     }
 }
