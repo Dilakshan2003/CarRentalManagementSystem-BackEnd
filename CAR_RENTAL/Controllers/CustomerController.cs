@@ -128,7 +128,7 @@ namespace CAR_RENTAL.Controllers
             }
 
             existingCustomer.Name = customerRequest.Name;
-            existingCustomer.NIC = customerRequest.NIC;
+            
             existingCustomer.Email = customerRequest.Email;
             existingCustomer.PhoneNumber = customerRequest.PhoneNumber;
             existingCustomer.Address = customerRequest.Address;
@@ -142,7 +142,7 @@ namespace CAR_RENTAL.Controllers
             {
                 Id = updatedCustomer.Id,
                 Name = updatedCustomer.Name,
-                NIC = updatedCustomer.NIC,
+               
                 Email = updatedCustomer.Email,
                 PhoneNumber = updatedCustomer.PhoneNumber,
                 Address = updatedCustomer.Address,
