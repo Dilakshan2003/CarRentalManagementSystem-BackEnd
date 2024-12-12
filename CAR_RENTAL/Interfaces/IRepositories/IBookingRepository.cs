@@ -7,7 +7,7 @@ namespace CAR_RENTAL.Interfaces.IRepositories
         Task<List<Booking>> GetAllBookingsAsync();
         Task<Booking> GetBookingByIdAsync(int id);
         Task CreateBookingAsync(Booking booking);
-        Task UpdateBookingAsync(Booking booking);
+        Task<Booking> UpdateBookingAsync(Booking booking);
         Task DeleteBookingAsync(int id);
     }
 }

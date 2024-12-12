@@ -185,6 +185,41 @@ namespace CAR_RENTAL.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("CAR_RENTAL.Entites.Rent", b =>
+                {
+                    b.Property<int>("RentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentId"));
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RentedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RentId");
+
+                    b.ToTable("Rents");
+                });
+
             modelBuilder.Entity("CAR_RENTAL.Entites.Booking", b =>
                 {
                     b.HasOne("CAR_RENTAL.Entites.Customer", "customer")

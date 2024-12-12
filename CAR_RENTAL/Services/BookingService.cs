@@ -152,32 +152,26 @@ namespace CAR_RENTAL.Services
         {
             var existingBooking = await _bookingRepository.GetBookingByIdAsync(id);
 
-            if (existingBooking != null)
+            if (existingBooking == null) return null;
+
+            existingBooking.Status = bookingRequestDto.Status;
+
+            var data = await _bookingRepository.UpdateBookingAsync(existingBooking);
+
+            var bookingDto = new BookingResponseDto
             {
-                existingBooking.CustomerId = bookingRequestDto.CustomerId;
-                existingBooking.CarId = bookingRequestDto.CarId;
-                existingBooking.StartDate = bookingRequestDto.StartDate;
-                existingBooking.EndDate = bookingRequestDto.EndDate;
-                existingBooking.Status = bookingRequestDto.Status;
+                BookingId = data.BookingId,
+                CustomerId = data.CustomerId,
+                CarId = data.CarId,
+                StartDate = data.StartDate,
+                EndDate = data.EndDate,
+                Status = data.Status,
+                CreatedDate = data.CreatedDate
+            };
 
-                await _bookingRepository.UpdateBookingAsync(existingBooking);
-
-                var bookingDto = new BookingResponseDto
-                {
-                    BookingId = existingBooking.BookingId,
-                    CustomerId = existingBooking.CustomerId,
-                    CarId = existingBooking.CarId,
-                    StartDate = existingBooking.StartDate,
-                    EndDate = existingBooking.EndDate,
-                    Status = existingBooking.Status,
-                    CreatedDate = existingBooking.CreatedDate
-                };
-
-                return bookingDto;
-            }
-
-            return null;
+            return bookingDto;
         }
+
 
         public async Task DeleteBookingAsync(int id)
         {

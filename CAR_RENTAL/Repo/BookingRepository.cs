@@ -30,11 +30,16 @@ namespace CAR_RENTAL.Repo
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateBookingAsync(Booking booking)
+        public async Task<Booking> UpdateBookingAsync(Booking booking)
         {
-            _context.Bookings.Update(booking);
+            var data = await GetBookingByIdAsync(booking.BookingId);
+            if (data == null) return null;  
+            data.Status = booking.Status;
+            _context.Bookings.Update(data);
             await _context.SaveChangesAsync();
+            return data;
         }
+
 
         public async Task DeleteBookingAsync(int id)
         {

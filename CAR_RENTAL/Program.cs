@@ -33,6 +33,9 @@ builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 
+builder.Services.AddScoped<IRentRepository, RentRepository>();
+builder.Services.AddScoped<IRentService, RentService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>

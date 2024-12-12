@@ -32,7 +32,8 @@ namespace CAR_RENTAL.Controllers
                 return NotFound();
             return Ok(booking);
         }
-                     
+       
+
         [HttpPost]
         public async Task<ActionResult<BookingResponseDto>> CreateBooking(int CustomerId,[FromBody] BookingRequestDto bookingRequestDto)
         {
