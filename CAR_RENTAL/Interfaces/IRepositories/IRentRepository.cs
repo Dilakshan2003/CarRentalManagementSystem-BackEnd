@@ -9,5 +9,6 @@ namespace CAR_RENTAL.Interfaces.IRepositories
         Task CreateRentAsync(Rent rent);
         Task<Rent> GetRentByBookingId(int BookingId);
         Task<IEnumerable<Rent>> GetAllRentsAsync();
+        Task DeleteRentAsync(Rent rent);
     }
 }

@@ -36,6 +36,11 @@ namespace CAR_RENTAL.Repo
             return await _context.Rents.ToListAsync();
         }
 
+        public async Task DeleteRentAsync(Rent rent)
+        {
+            _context.Rents.Remove(rent);
+            await _context.SaveChangesAsync();
+        }
     }
 }
 

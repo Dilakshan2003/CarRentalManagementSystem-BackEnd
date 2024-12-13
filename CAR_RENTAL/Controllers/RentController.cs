@@ -54,6 +54,18 @@ namespace CAR_RENTAL.Controllers
             return Ok(rents);
         }
 
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRent(int id)
+        {
+            var result = await _rentService.DeleteRentAsync(id);
+            if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
+
     }
 }
 

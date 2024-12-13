@@ -10,5 +10,6 @@ namespace CAR_RENTAL.Interfaces.IServices
 
         Task<RentResponseDto> GetRentByBookingId(int BookingId);
         Task<IEnumerable<RentResponseDto>> GetAllRentsAsync();
+        Task<bool> DeleteRentAsync(int rentId);
     }
 }

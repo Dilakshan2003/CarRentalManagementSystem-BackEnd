@@ -53,7 +53,7 @@ namespace CAR_RENTAL.Services
                 EndDate = booking.EndDate,
                 Status = rentRequestDto.Status,
                 RentedDate = DateTime.Now
-            };
+            };  
 
             await _rentRepository.CreateRentAsync(rent);
 
@@ -102,6 +102,18 @@ namespace CAR_RENTAL.Services
                 Status = rent.Status,
                 RentedDate = rent.RentedDate
             });
+        }
+
+
+
+        public async Task<bool> DeleteRentAsync(int rentId)
+        {
+            var rent = await _rentRepository.GetRentByIdAsync(rentId);
+            if (rent == null)
+                return false;
+
+            await _rentRepository.DeleteRentAsync(rent);
+            return true;
         }
 
 
