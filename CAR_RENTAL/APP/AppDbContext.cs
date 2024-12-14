@@ -14,5 +14,50 @@ namespace CAR_RENTAL.context
         public DbSet<Message> Messages { get; set; }
         public DbSet<Rent> Rents { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>()
+               .HasMany(c => c.Bookings)
+               .WithOne(b => b.customer)
+               .HasForeignKey(b => b.CustomerId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            // Booking to Customer Relationship
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.customer)
+                .WithMany(c => c.Bookings)
+                .HasForeignKey(b => b.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Message to Customer Relationship
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.customer)
+                .WithMany()
+                .HasForeignKey(m => m.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Rent to Booking Relationship
+            modelBuilder.Entity<Rent>()
+                .HasOne(r => r.Booking)
+                .WithOne()
+                .HasForeignKey<Rent>(r => r.BookingId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Rent to Customer Relationship
+            modelBuilder.Entity<Rent>()
+                .HasOne(r => r.Customer)
+                .WithMany()
+                .HasForeignKey(r => r.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Rent to Car Relationship
+            modelBuilder.Entity<Rent>()
+                .HasOne(r => r.car)
+                .WithMany()
+                .HasForeignKey(r => r.CarId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
     }
 }

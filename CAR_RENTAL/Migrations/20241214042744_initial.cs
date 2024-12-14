@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CAR_RENTAL.Migrations
 {
     /// <inheritdoc />
-    public partial class sendRequest : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,25 +64,6 @@ namespace CAR_RENTAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rents",
-                columns: table => new
-                {
-                    RentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    CarId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RentedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rents", x => x.RentId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
@@ -128,6 +109,43 @@ namespace CAR_RENTAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rents",
+                columns: table => new
+                {
+                    RentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RentedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rents", x => x.RentId);
+                    table.ForeignKey(
+                        name: "FK_Rents_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "BookingId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rents_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rents_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CustomerId",
                 table: "Bookings",
@@ -137,17 +155,27 @@ namespace CAR_RENTAL.Migrations
                 name: "IX_Messages_CustomerId",
                 table: "Messages",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_BookingId",
+                table: "Rents",
+                column: "BookingId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_CarId",
+                table: "Rents",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_CustomerId",
+                table: "Rents",
+                column: "CustomerId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Bookings");
-
-            migrationBuilder.DropTable(
-                name: "Cars");
-
             migrationBuilder.DropTable(
                 name: "CustomerLogins");
 
@@ -156,6 +184,12 @@ namespace CAR_RENTAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rents");
+
+            migrationBuilder.DropTable(
+                name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "Customers");

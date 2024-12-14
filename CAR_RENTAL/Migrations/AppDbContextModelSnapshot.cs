@@ -217,6 +217,13 @@ namespace CAR_RENTAL.Migrations
 
                     b.HasKey("RentId");
 
+                    b.HasIndex("BookingId")
+                        .IsUnique();
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("CustomerId");
+
                     b.ToTable("Rents");
                 });
 
@@ -240,6 +247,33 @@ namespace CAR_RENTAL.Migrations
                         .IsRequired();
 
                     b.Navigation("customer");
+                });
+
+            modelBuilder.Entity("CAR_RENTAL.Entites.Rent", b =>
+                {
+                    b.HasOne("CAR_RENTAL.Entites.Booking", "Booking")
+                        .WithOne()
+                        .HasForeignKey("CAR_RENTAL.Entites.Rent", "BookingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CAR_RENTAL.Entites.Car", "car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CAR_RENTAL.Entites.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("car");
                 });
 
             modelBuilder.Entity("CAR_RENTAL.Entites.Customer", b =>
