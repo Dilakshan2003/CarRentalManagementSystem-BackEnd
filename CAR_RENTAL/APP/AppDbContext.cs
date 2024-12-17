@@ -39,10 +39,11 @@ namespace CAR_RENTAL.context
 
             // Rent to Booking Relationship
             modelBuilder.Entity<Rent>()
-                .HasOne(r => r.Booking)
-                .WithOne()
-                .HasForeignKey<Rent>(r => r.BookingId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(r => r.car)
+               .WithMany()
+               .HasForeignKey(r => r.CarId)
+               .OnDelete(DeleteBehavior.Cascade);
+
 
             // Rent to Customer Relationship
             modelBuilder.Entity<Rent>()

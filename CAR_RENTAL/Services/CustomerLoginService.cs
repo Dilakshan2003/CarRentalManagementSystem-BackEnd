@@ -21,16 +21,31 @@ namespace CAR_RENTAL.Services
         {
             var customer = await _repository.GetCustomerByEmailAsync(request.Email);
 
-            
+            if (customer == null) {
+                throw new Exception("User Not Found");
 
-            var token = GenerateJwtToken(customer); // Implement JWT Token generation here
-
-            return new CustomerLoginResponseDto
+            }
+            else
             {
-                Id = customer.Id,
-                Email = customer.Email,
-                Token = token
-            };
+                var result = this.VerifyPassword(request.Password, customer.password);
+                if (result == true) {
+                    var token = GenerateJwtToken(customer); // Implement JWT Token generation here
+
+                    return new CustomerLoginResponseDto
+                    {
+                        Id = customer.Id,
+                        Email = customer.Email,
+                        Token = token
+                    };
+                }
+                else
+                {
+                    throw new Exception("Invalid Password");
+                }
+            }
+
+
+      
         }
 
         private bool VerifyPassword(string inputPassword, string storedPassword)

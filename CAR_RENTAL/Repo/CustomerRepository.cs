@@ -16,7 +16,8 @@ namespace CAR_RENTAL.Repo
 
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            return await _context.Customers.FindAsync(id);
+           var data = await _context.Customers.FirstOrDefaultAsync(u => u.Id == id);
+            return data;
         }
 
         public async Task<Customer> GetCustomerByNICAsync(string nic)
